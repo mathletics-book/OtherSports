@@ -1,8 +1,10 @@
-import sys
 import pandas as pd
 import numpy as np
 import math
 import random
+
+# what is the minimum number of faceoffs taken in order to be considered
+fo_thres = 40
 
 df = pd.read_csv("skaters1617.csv")
 
@@ -11,7 +13,7 @@ observed_var = np.var(df["FO%"])
 t = []
 
 for i in range(len(df["FOL"])):
-	if (df["FOL"][i]+df["FOW"][i] > float(sys.argv[1]) and not math.isnan(df["FO%"][i])):
+	if (df["FOL"][i]+df["FOW"][i] > fo_thres and not math.isnan(df["FO%"][i])):
 		t.append(df["FO%"][i])
 
 observed_var = np.var(t)
