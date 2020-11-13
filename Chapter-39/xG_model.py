@@ -1,4 +1,5 @@
 import statsmodels.formula.api as smf
+import statsmodels.api as sm
 from sklearn.calibration import calibration_curve
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
