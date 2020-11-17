@@ -11,12 +11,12 @@ f = 'Outcome~x + y + C(Assist) + C(Type) + C(Play) + Angle + Distance'
 
 X_train, X_test, y_train, y_test = train_test_split(mls, mls['Outcome'], test_size=0.2)
 xG_mod = smf.glm(formula = f, data = X_train, family = sm.families.Binomial()).fit()
-print(logitfit.summary())
+print(xG_mod.summary())
 
 
 ## this computes the calibration curve out-of-sample
 
-observed, predicted = calibration_curve(X_test['Outcome'], logitfit.predict(X_test), n_bins = 10)
+observed, predicted = calibration_curve(X_test['Outcome'], xG_mod.predict(X_test), n_bins = 10)
 
 fig = plt.figure()
 ax1 = fig.add_subplot(111)
